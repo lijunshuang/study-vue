@@ -11,9 +11,6 @@
         title:'about'
       }
     },
-    created() {
-      console.log('css',this.$style.text)
-    },
   }
 </script>
 
