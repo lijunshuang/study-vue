@@ -14,7 +14,15 @@ const routes = [
   {
     path:'/about',
     name:'about',
-    component:()=>import('../views/About.vue')
+    component:()=>import('../views/About.vue'),
+    meta:{
+      auth:true // 需要守卫
+    }
+  },
+  {
+    path:'/login',
+    name:'login',
+    component:()=>import('../views/login.vue')
   },
   {
     path:'*',
@@ -28,5 +36,23 @@ const router = new VueRouter({
   // base:process.env.BASE_URL,
   routes
 })
+
+// 路由守卫
+router.beforeEach((to,from,next)=>{
+  if(to.meta.auth){
+    // 判断是否登录，如果没有登录 跳转到登录页
+    if(window.isLogin){
+      next()
+    }else{
+      next(`/login?redirect=${to.fullPath}`)
+    }
+  }else{
+    next()
+  }
+})
+
+
+
+
 
 export default router
