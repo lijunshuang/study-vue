@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <nav>
       <router-link to="/">首页</router-link>
       <router-link to="/about">关于</router-link>
@@ -9,6 +9,7 @@
       <button @click="$store.commit('add')">同步+1</button>
       <span style="margin:0px 10px;">{{$store.state.counter}}</span>
       <button @click="$store.dispatch('add')">异步+1</button>
+      <button>double counter{{$store.getters.doubleCounter}}</button>
     </div>
 
     <router-view></router-view>
