@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- {{obj.foo}} -->
+  </div>
+  <script>
+    function defineReactive(obj,key,val){
+      Object.defineProperty( obj, key, {
+        get(){
+          console.log('get', key)
+          return val
+        },
+        set (newVal){
+          if(newVal !== val){
+            console.log('set',key)
+            val = newVal
+            // 视图更新
+            update()
+          }
+        }
+      })
+    }
+
+  const obj = {};
+  defineReactive(obj, 'foo', 'foo')
+
+  function update(){
+    app.innerText = obj.foo
+  }
+
+  setInterval(()=>{
+    obj.foo = new Date().toLocaleTimeString() // 转化为本地时间
+  },1000)
+
+  </script>
+</body>
+</html>

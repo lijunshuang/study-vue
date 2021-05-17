@@ -6,10 +6,10 @@
       <router-link to="/about">关于</router-link>
     </nav>
     <div>
-      <button @click="$store.commit('add')">同步+1</button>
-      <span style="margin:0px 10px;">{{$store.state.counter}}</span>
-      <button @click="$store.dispatch('add')">异步+1</button>
-      <button>double counter{{$store.getters.doubleCounter}}</button>
+      <p><button @click="$store.commit('add')">同步+1</button></p>
+      <p><button @click="$store.dispatch('add')">异步+1</button></p>
+      <p><span style="margin:0px 10px;">counter: {{$store.state.counter}}</span></p>
+      <p>double counter {{$store.getters.doubleCounter}}</p>
     </div>
 
     <router-view></router-view>
@@ -24,7 +24,10 @@ export default {
   name: "App",
   components: {
     // HelloWorld
-  }
+  },
+  mounted() {
+    console.log('this',this.$store)
+  },
 };
 </script>
 

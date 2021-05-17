@@ -20,7 +20,7 @@ export default  new Vuex.Store({
     }
   },
   getters:{
-    doubleCounter:state=>{
+    doubleCounter: state=>{
       return state.counter * 2;
     }
   },
