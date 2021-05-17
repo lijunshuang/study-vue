@@ -77,7 +77,7 @@ class Compile {
         console.log('编译元素',n.nodeName);
         // 递归
         if(n.childNodes.length>0){
-          this.
+          // this.
         }
       }else{
         console.log('编译文本', n.textContent)
