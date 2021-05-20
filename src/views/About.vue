@@ -1,14 +1,22 @@
 <template>
-  <div :class="$style.text">{{title}}</div>
+  <div :class="$style.text">
+    <h2>{{title}}</h2>
+    <p>{{username}}</p>
+  </div>
+
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   data() {
     return {
       title: "about"
     };
   },
+  computed:{
+    ...mapState('user',['username'])
+  }
   // 组件未渲染，通过给next传递回调访问组件实例
   // beforeRouteEnter(to, from, next) {
   //   getPost(to.params.id, post => {
