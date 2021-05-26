@@ -74,14 +74,51 @@ class Compile {
     const {childNodes} = node
     Array.from(childNodes).forEach(n=>{
       if(this.isElement(n)){
+        // 分析 attr
+        this.compileElement(n)
         console.log('编译元素',n.nodeName);
         // 递归
         if(n.childNodes.length>0){
-          // this.
+          this.compile(n)
         }
+      }else if(this.isInter(n)){
+        // 动态插值表达式
+        this.compileText(n)
       }else{
         console.log('编译文本', n.textContent)
       }
+    })
+  }
+  // nodeType = 1 是节点
+  isElement(n){
+    return n.nodeType === 1
+  }
+  // 字符串模板
+  isInter(n){
+    let reg = /\{\{(.*)\}\}/;
+    return n.nodeType === 3 && reg.test(n.textContent)
+  }
+  isDir(attrName){
+    return attrName.startsWith('k-')
+  }
+  // 编译插值文本 {{ooxx}}
+  compileText(n){
+    // 获取表达式 RegExp.$1
+    n.textContent = this.$vm[RegExp.$1]
+  }
+  compileElement(n){
+    // 编译元素，遍历它的属性、 看是否是k-开头的指令，或者@事件
+    const attrs = n.attributes
+    Array.from(attrs).forEach(attr=>{
+      // k-text='xxx'，  name = k-text, value = 'xxx'
+      console.log('arrt',attr.name, attr.value)
+      let attrName = attr.name,
+        exp = attr.value
+        // 获取 指令
+        if(this.isDir(attrName)){
+          const dir = attrName.substring(2)
+        }
+      console.log('isDir',this.isDir(attrName))
     })
   }
 }
