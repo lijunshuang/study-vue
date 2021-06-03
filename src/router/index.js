@@ -17,6 +17,11 @@ const routes = [
     component:()=>import('../views/About.vue')
   },
   {
+    path:'/form',
+    name:'about',
+    component:()=>import('../views/Form.vue')
+  },
+  {
     path:'*',
     name:'404',
     component:()=>import('../views/404.vue')

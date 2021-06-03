@@ -2,7 +2,7 @@
   <div>
     home
     <p>counter: {{counter}}</p>
-    <Child msg="哈哈哈" foo="祖父的 foo" @add="add"></Child>
+    <Child msg="哈哈哈" foo="祖父的 foo" @add="add" placeholder="测试看看"></Child>
   </div>
 </template>
 
